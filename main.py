@@ -55,26 +55,23 @@ MOOD_KEYWORDS = {
     "playful": ["fun", "silly", "joke", "play"]
 }
 
-# Utility: call Gemini API (using gemini-1.5-flash as a good alternative to gpt-3.5-turbo)
+# Utility: call Gemini API (using gemini-pro as the text generation model)
 def call_model(prompt: str, max_tokens=700, temperature=0.6) -> str:
     api_key = os.getenv("GOOGLE_API_KEY")
     if not api_key:
         raise RuntimeError("GOOGLE_API_KEY not found in environment. Please set it before running.")
     
     # Initialize the model
-    model = genai.GenerativeModel('gemini-1.5-flash')
-    
-    # Configure generation parameters
-    generation_config = genai.types.GenerationConfig(
-        max_output_tokens=max_tokens,
-        temperature=temperature,
+    model = genai.GenerativeModel(
+        "gemini-pro",
+        generation_config={
+            "temperature": temperature,
+            "max_output_tokens": max_tokens,
+        }
     )
     
     # Generate content
-    response = model.generate_content(
-        prompt,
-        generation_config=generation_config
-    )
+    response = model.generate_content(prompt)
     
     return response.text
 

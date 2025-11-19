@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Dreamy Bedtime Stories ✨</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #0e4b99 75%, #2e86ab 100%);
+            min-height: 100vh;
+            color: #f8f9fa;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Night Sky Stars */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .star.small {
+            width: 2px;
+            height: 2px;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+
+        .star.medium {
+            width: 3px;
+            height: 3px;
+            animation: twinkle 4s infinite ease-in-out;
+        }
+
+        .star.large {
+            width: 4px;
+            height: 4px;
+            animation: twinkle 5s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Moon */
+        .moon {
+            position: fixed;
+            top: 10%;
+            right: 15%;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(145deg, #ffd700, #ffed4e);
+            border-radius: 50%;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+            z-index: 2;
+            animation: moonGlow 6s infinite ease-in-out;
+        }
+
+        @keyframes moonGlow {
+            0%, 100% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.4); }
+            50% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.6); }
+        }
+
+        /* Clouds */
+        .cloud {
+            position: fixed;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            z-index: 1;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .cloud:before,
+        .cloud:after {
+            content: '';
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+        }
+
+        .cloud1 {
+            width: 100px;
+            height: 40px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .cloud1:before {
+            top: -25px;
+            left: 10px;
+            width: 50px;
+            height: 50px;
+        }
+
+        .cloud1:after {
+            top: -25px;
+            right: 10px;
+            width: 60px;
+            height: 40px;
+        }
+
+        .cloud2 {
+            width: 80px;
+            height: 30px;
+            top: 35%;
+            right: 20%;
+            animation-delay: -10s;
+        }
+
+        .cloud2:before {
+            top: -20px;
+            left: 15px;
+            width: 40px;
+            height: 40px;
+        }
+
+        .cloud2:after {
+            top: -20px;
+            right: 15px;
+            width: 50px;
+            height: 30px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .story-card {
+            background: rgba(26, 26, 46, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 20px 0;
+        }
+
+        .title {
+            font-family: 'Kalam', cursive;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #ffd700, #ffed4e, #87ceeb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: #b8c5d6;
+            font-weight: 300;
+        }
+
+        .input-section {
+            margin-bottom: 30px;
+        }
+
+        .input-label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #e8f4f8;
+            font-size: 1.1rem;
+        }
+
+        .story-input {
+            width: 100%;
+            min-height: 120px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            color: #f8f9fa;
+            font-size: 1rem;
+            font-family: 'Nunito', sans-serif;
+            resize: vertical;
+            transition: all 0.3s ease;
+        }
+
+        .story-input:focus {
+            outline: none;
+            border-color: #87ceeb;
+            box-shadow: 0 0 20px rgba(135, 206, 235, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .story-input::placeholder {
+            color: #8a9ba8;
+        }
+
+        .generate-btn {
+            width: 100%;
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 15px;
+            padding: 18px 30px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Nunito', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .generate-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .generate-btn:disabled {
+            background: linear-gradient(45deg, #555, #777);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .loading-moon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(145deg, #ffd700, #ffed4e);
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            animation: rock 2s infinite ease-in-out;
+        }
+
+        @keyframes rock {
+            0%, 100% { transform: rotate(-10deg); }
+            50% { transform: rotate(10deg); }
+        }
+
+        .loading-text {
+            color: #b8c5d6;
+            font-style: italic;
+        }
+
+        .results {
+            display: none;
+            margin-top: 30px;
+        }
+
+        .story-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-left: 4px solid #87ceeb;
+        }
+
+        .section-title {
+            font-family: 'Kalam', cursive;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #87ceeb;
+        }
+
+        .story-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #f8f9fa;
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .story-text::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .story-text::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .story-text::-webkit-scrollbar-thumb {
+            background: #87ceeb;
+            border-radius: 3px;
+        }
+
+        .metadata-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .metadata-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .metadata-title {
+            font-weight: 600;
+            color: #ffd700;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .metadata-value {
+            color: #e8f4f8;
+            font-size: 1rem;
+        }
+
+        .cards-section, .soundtrack-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .card {
+            background: rgba(135, 206, 235, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(135, 206, 235, 0.3);
+        }
+
+        .card-title {
+            font-weight: 600;
+            color: #87ceeb;
+            margin-bottom: 10px;
+        }
+
+        .soundtrack-item {
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 3px solid #ffd700;
+        }
+
+        .soundtrack-title {
+            font-weight: 600;
+            color: #ffd700;
+            margin-bottom: 5px;
+        }
+
+        .error-message {
+            background: rgba(220, 53, 69, 0.2);
+            border: 1px solid rgba(220, 53, 69, 0.5);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            color: #f8d7da;
+            text-align: center;
+            display: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .story-card {
+                padding: 25px 20px;
+                border-radius: 20px;
+            }
+
+            .title {
+                font-size: 2rem;
+            }
+
+            .moon {
+                width: 60px;
+                height: 60px;
+                top: 5%;
+                right: 10%;
+            }
+
+            .metadata-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 1.8rem;
+            }
+
+            .story-card {
+                padding: 20px 15px;
+            }
+
+            .moon {
+                width: 50px;
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Night Sky Elements -->
+    <div class="stars" id="stars"></div>
+    <div class="moon"></div>
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+
+    <div class="container">
+        <div class="story-card">
+            <h1 class="title">✨ Dreamy Bedtime Stories ✨</h1>
+            <p class="subtitle">Let's create a magical story just for you, little dreamer</p>
+
+            <div class="input-section">
+                <label class="input-label" for="storyInput">What kind of story would you like to hear tonight?</label>
+                <textarea 
+                    id="storyInput" 
+                    class="story-input" 
+                    placeholder="Tell me about a shy turtle who wants to make friends... or a brave little mouse on an adventure... or anything your heart dreams of! ✨"
+                    rows="4"
+                ></textarea>
+            </div>
+
+            <button class="generate-btn" id="generateBtn" onclick="generateStory()">
+                🌙 Create My Bedtime Story 🌙
+            </button>
+
+            <div class="loading" id="loadingSection">
+                <div class="loading-moon"></div>
+                <p class="loading-text">Weaving your magical story... ✨</p>
+            </div>
+
+            <div class="error-message" id="errorMessage"></div>
+
+            <div class="results" id="resultsSection">
+                <div class="story-section">
+                    <h3 class="section-title">📖 Your Bedtime Story</h3>
+                    <div class="story-text" id="storyText"></div>
+                </div>
+
+                <div class="metadata-grid" id="metadataGrid">
+                    <div class="metadata-card">
+                        <div class="metadata-title">Mood</div>
+                        <div class="metadata-value" id="moodValue"></div>
+                    </div>
+                    <div class="metadata-card">
+                        <div class="metadata-title">Setting</div>
+                        <div class="metadata-value" id="settingValue"></div>
+                    </div>
+                    <div class="metadata-card">
+                        <div class="metadata-title">Themes</div>
+                        <div class="metadata-value" id="themesValue"></div>
+                    </div>
+                </div>
+
+                <div class="cards-section" id="cardsSection">
+                    <h3 class="section-title">🃏 Story Trading Cards</h3>
+                    <div class="cards-grid" id="cardsGrid"></div>
+                </div>
+
+                <div class="soundtrack-section" id="soundtrackSection">
+                    <h3 class="section-title">🎵 Peaceful Soundtrack</h3>
+                    <div id="soundtrackList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create stars
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const numberOfStars = 100;
+
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                // Random size
+                const sizes = ['small', 'medium', 'large'];
+                star.classList.add(sizes[Math.floor(Math.random() * sizes.length)]);
+                
+                // Random position
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                
+                // Random animation delay
+                star.style.animationDelay = Math.random() * 5 + 's';
+                
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Generate story function
+        async function generateStory() {
+            const input = document.getElementById('storyInput').value.trim();
+            const generateBtn = document.getElementById('generateBtn');
+            const loadingSection = document.getElementById('loadingSection');
+            const resultsSection = document.getElementById('resultsSection');
+            const errorMessage = document.getElementById('errorMessage');
+
+            if (!input) {
+                showError('Please tell me what kind of story you\'d like to hear! ✨');
+                return;
+            }
+
+            // Hide previous results and errors
+            resultsSection.style.display = 'none';
+            errorMessage.style.display = 'none';
+
+            // Show loading state
+            generateBtn.disabled = true;
+            generateBtn.textContent = '🌙 Creating Magic... 🌙';
+            loadingSection.style.display = 'block';
+
+            try {
+                // Replace this URL with your deployed backend URL
+                const response = await fetch('http://localhost:8000/generate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ text: input })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                displayResults(data);
+
+            } catch (error) {
+                console.error('Error generating story:', error);
+                showError('Oops! The story fairy is taking a little nap. Please try again in a moment! 🧚‍♀️');
+            } finally {
+                // Reset button state
+                generateBtn.disabled = false;
+                generateBtn.textContent = '🌙 Create My Bedtime Story 🌙';
+                loadingSection.style.display = 'none';
+            }
+        }
+
+        function displayResults(data) {
+            // Display story
+            document.getElementById('storyText').textContent = data.story;
+
+            // Display metadata
+            document.getElementById('moodValue').textContent = data.mood;
+            document.getElementById('settingValue').textContent = data.setting;
+            document.getElementById('themesValue').textContent = data.themes.join(', ');
+
+            // Display trading cards
+            displayTradingCards(data.trading_cards);
+
+            // Display soundtrack
+            displaySoundtrack(data.soundtrack);
+
+            // Show results
+            document.getElementById('resultsSection').style.display = 'block';
+        }
+
+        function displayTradingCards(cards) {
+            const cardsGrid = document.getElementById('cardsGrid');
+            cardsGrid.innerHTML = '';
+
+            if (cards.characters && Array.isArray(cards.characters)) {
+                cards.characters.forEach(character => {
+                    const cardDiv = document.createElement('div');
+                    cardDiv.className = 'card';
+                    cardDiv.innerHTML = `
+                        <div class="card-title">👤 ${character.name || 'Character'}</div>
+                        <p>${character.traits ? character.traits.join(', ') : ''}</p>
+                        <p><em>${character.ability || ''}</em></p>
+                    `;
+                    cardsGrid.appendChild(cardDiv);
+                });
+            }
+
+            if (cards.setting) {
+                const settingCard = document.createElement('div');
+                settingCard.className = 'card';
+                settingCard.innerHTML = `
+                    <div class="card-title">🏞️ Setting</div>
+                    <p>${cards.setting}</p>
+                `;
+                cardsGrid.appendChild(settingCard);
+            }
+
+            if (cards.moral) {
+                const moralCard = document.createElement('div');
+                moralCard.className = 'card';
+                moralCard.innerHTML = `
+                    <div class="card-title">💝 Moral</div>
+                    <p>${cards.moral}</p>
+                `;
+                cardsGrid.appendChild(moralCard);
+            }
+        }
+
+        function displaySoundtrack(soundtrack) {
+            const soundtrackList = document.getElementById('soundtrackList');
+            soundtrackList.innerHTML = '';
+
+            if (Array.isArray(soundtrack)) {
+                soundtrack.forEach(track => {
+                    const trackDiv = document.createElement('div');
+                    trackDiv.className = 'soundtrack-item';
+                    trackDiv.innerHTML = `
+                        <div class="soundtrack-title">${track.title || 'Peaceful Melody'}</div>
+                        <p>${track.reason || ''}</p>
+                        <small>${track.elements ? track.elements.join(', ') : ''}</small>
+                    `;
+                    soundtrackList.appendChild(trackDiv);
+                });
+            }
+        }
+
+        function showError(message) {
+            const errorMessage = document.getElementById('errorMessage');
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+        }
+
+        // Allow Enter key to generate story
+        document.getElementById('storyInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && e.ctrlKey) {
+                generateStory();
+            }
+        });
+
+        // Initialize stars when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            createStars();
+        });
+    </script>
+</body>
+</html>
